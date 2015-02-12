@@ -1,4 +1,4 @@
-package org.netty.study.started.stick;
+package org.netty.study.decoder.stick;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

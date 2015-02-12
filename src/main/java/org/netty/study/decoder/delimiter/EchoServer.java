@@ -1,4 +1,4 @@
-package org.netty.study.decoder;
+package org.netty.study.decoder.delimiter;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
