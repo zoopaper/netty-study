@@ -149,60 +149,30 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
 	}
 
 	public String sanitizeUri(String uri) {
-//		try {
-//			uri = URLDecoder.decode(url, "UTF-8");
-//
-//		} catch (UnsupportedEncodingException e) {
-//
-//			try {
-//				uri = URLDecoder.decode(uri, "ISO-8859-1");
-//			} catch (UnsupportedEncodingException e1) {
-//				throw new Error();
-//			}
-//
-//		}
-//		if (!uri.startsWith(url)) {
-//			return null;
-//		}
-//
-//		if (!uri.startsWith("/")) {
-//			return null;
-//		}
-//
-//		uri = uri.replace('/', File.separatorChar);
-//		if (uri.contains(File.separator + '.') || uri.contains('.' + File.separator) || uri.startsWith(".")
-//				|| uri.endsWith(".") || INSECURE_URI.matcher(uri).matches()) {
-//			return null;
-//		}
-//
-//		return System.getProperty("user.dir") + File.separator + uri;
 
-		
-		   // Decode the path.
-        try {
-            uri = URLDecoder.decode(uri, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new Error(e);
-        }
+		// Decode the path.
+		try {
+			uri = URLDecoder.decode(uri, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new Error(e);
+		}
 
-        if (uri.isEmpty() || uri.charAt(0) != '/') {
-            return null;
-        }
+		if (uri.isEmpty() || uri.charAt(0) != '/') {
+			return null;
+		}
 
-        // Convert file separators.
-        uri = uri.replace('/', File.separatorChar);
+		// Convert file separators.
+		uri = uri.replace('/', File.separatorChar);
 
-        // Simplistic dumb security check.
-        // You will have to do something serious in the production environment.
-        if (uri.contains(File.separator + '.') ||
-            uri.contains('.' + File.separator) ||
-            uri.charAt(0) == '.' || uri.charAt(uri.length() - 1) == '.' ||
-            INSECURE_URI.matcher(uri).matches()) {
-            return null;
-        }
+		// Simplistic dumb security check.
+		// You will have to do something serious in the production environment.
+		if (uri.contains(File.separator + '.') || uri.contains('.' + File.separator) || uri.charAt(0) == '.'
+				|| uri.charAt(uri.length() - 1) == '.' || INSECURE_URI.matcher(uri).matches()) {
+			return null;
+		}
 
-        // Convert to absolute path.
-        return SystemPropertyUtil.get("user.dir") + File.separator + uri;
+		// Convert to absolute path.
+		return System.getProperty("user.dir") + File.separator + uri;
 	}
 
 	public final void sendList(ChannelHandlerContext ctx, File file) {
