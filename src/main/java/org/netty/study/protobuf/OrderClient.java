@@ -12,6 +12,9 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 
 public class OrderClient {
 
@@ -26,10 +29,12 @@ public class OrderClient {
 
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
+					ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
 					ch.pipeline().addLast(new ProtobufVarint32FrameDecoder());
 					ch.pipeline().addLast(new ProtobufDecoder(OrderResponseProto.OrderResponse.getDefaultInstance()));
 					ch.pipeline().addLast(new ProtobufVarint32LengthFieldPrepender());
 					ch.pipeline().addLast(new ProtobufEncoder());
+					ch.pipeline().addLast(new StringDecoder(CharsetUtil.UTF_8));
 					ch.pipeline().addLast(new OrderClientHandler());
 				}
 
