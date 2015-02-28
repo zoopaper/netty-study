@@ -17,7 +17,7 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
 
 		String body = (String) msg;
 
-		System.out.println("The time server receive order :" + body + " ; the counter is :" + ++counter);
+//		System.out.println("The time server receive order :" + body + " ; the counter is :" + ++counter);
 
 		String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ? new java.util.Date(System.currentTimeMillis())
 				.toString() : "BAD ORDER";
