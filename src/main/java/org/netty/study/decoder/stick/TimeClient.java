@@ -34,10 +34,12 @@ public class TimeClient {
 						}
 
 					});
+			for(int i=0;i<60000;i++){
 			// 发起异步连接操作
 			ChannelFuture f = bootstrap.connect(host, port).sync();
 			// 等待客户端链路关闭
-			f.channel().closeFuture().sync();
+//			f.channel().closeFuture().sync();
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -48,7 +50,7 @@ public class TimeClient {
 	}
 
 	public static void main(String[] args) {
-		int port = 8888;
+		int port = 8000;
 		try {
 			if (args.length > 0) {
 				port = Integer.valueOf(args[0]);
@@ -56,6 +58,6 @@ public class TimeClient {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		new TimeClient().connect(port, "127.0.0.1");
+		new TimeClient().connect(port, "10.0.4.65");
 	}
 }
