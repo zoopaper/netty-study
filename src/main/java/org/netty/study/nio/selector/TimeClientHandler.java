@@ -1,4 +1,4 @@
-package org.netty.study.nio;
+package org.netty.study.nio.selector;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

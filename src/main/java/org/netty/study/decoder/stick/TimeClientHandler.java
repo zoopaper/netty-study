@@ -22,11 +22,11 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 
 		ByteBuf message = null;
 
-//		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 100; i++) {
 			message = Unpooled.buffer(req.length);
 			message.writeBytes(req);
 			ctx.writeAndFlush(message);
-//		}
+		}
 
 	}
 
@@ -34,7 +34,7 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 
 		String body = (String) msg;
 
-//		System.out.println("Now is :" + body + " ; the counter is : " + ++counter);
+		System.out.println("Now is :" + body + " ; the counter is : " + ++counter);
 
 	}
 

@@ -18,7 +18,6 @@ import io.netty.handler.codec.string.StringDecoder;
 public class TimeClient {
 	public void connect(int port, String host) {
 
-		// 配置客户端NIO线程组
 		EventLoopGroup group = new NioEventLoopGroup();
 
 		Bootstrap bootstrap = new Bootstrap();
@@ -34,12 +33,10 @@ public class TimeClient {
 						}
 
 					});
-			for(int i=0;i<60000;i++){
-			// 发起异步连接操作
+
 			ChannelFuture f = bootstrap.connect(host, port).sync();
-			// 等待客户端链路关闭
-//			f.channel().closeFuture().sync();
-			}
+
+			f.channel().closeFuture().sync();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -50,7 +47,7 @@ public class TimeClient {
 	}
 
 	public static void main(String[] args) {
-		int port = 8000;
+		int port = 8888;
 		try {
 			if (args.length > 0) {
 				port = Integer.valueOf(args[0]);
