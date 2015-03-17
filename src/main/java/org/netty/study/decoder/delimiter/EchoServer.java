@@ -6,6 +6,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -33,9 +34,10 @@ public class EchoServer {
 						protected void initChannel(SocketChannel ch) throws Exception {
 
 							ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
-							ch.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));
-							ch.pipeline().addLast(new StringDecoder());
-							ch.pipeline().addLast(new EchoServerHandler());
+							ChannelPipeline pipeline = ch.pipeline();
+							pipeline.addLast(new DelimiterBasedFrameDecoder(1024, delimiter));
+							pipeline.addLast(new StringDecoder());
+							pipeline.addLast(new EchoServerHandler());
 						}
 
 					});
