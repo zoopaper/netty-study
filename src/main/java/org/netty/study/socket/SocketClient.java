@@ -21,35 +21,39 @@ public class SocketClient {
         Socket socket = new Socket();
 
         InetSocketAddress inetSocketAddress = new InetSocketAddress("localhost", 8080);
-
+        System.out.println("Client is start...........");
         try {
             socket.connect(inetSocketAddress);
 
-            System.out.println("Client is start...........");
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             BufferedReader scanIn = new BufferedReader(new InputStreamReader(System.in));
 
 
-            while (true) {
+            if ((scanIn.readLine()) != null) {
 
                 out.println(scanIn.readLine());
+            }
+
+            String line = null;
+
+            if ((line = in.readLine()) != null) {
+                System.out.println(line);
             }
 
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
 
 
     }

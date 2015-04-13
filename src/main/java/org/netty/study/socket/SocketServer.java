@@ -22,26 +22,26 @@ public class SocketServer {
 
         try {
             serverSocket = new ServerSocket(port);
-
-            Socket socket = serverSocket.accept();
             System.out.println("Server is start.............");
+            Socket socket = serverSocket.accept();
+            socket.setKeepAlive(true);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             String line = null;
             while ((line = in.readLine()) != null) {
-                System.out.println("recevie data:" + line);
-                if ("Byte".equals(line)) {
+                System.out.println("receive data:" + line);
+                if ("Bye".equalsIgnoreCase(line)) {
                     break;
                 }
+                out.println("SUCCESS");
             }
 
-            out.println("SUCCESS");
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 serverSocket.close();
             } catch (IOException e) {
