@@ -51,6 +51,8 @@ public class SocketServer {
 
                 System.out.println("receive data :" + data);
 
+                out.println("SUCCESS了!");
+
                 out.close();
 
                 in.close();

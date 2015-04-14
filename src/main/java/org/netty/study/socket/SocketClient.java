@@ -41,15 +41,15 @@ public class SocketClient {
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             //成功建立连接后，得到一个输出流，向服务端发送数据
-            out = new PrintWriter(socket.getOutputStream());
+            out = new PrintWriter(socket.getOutputStream(),true);
 
 
-//            BufferedReader line = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader line = new BufferedReader(new InputStreamReader(System.in));
 
-            out.println("Hello Server!");
+            out.println(line.readLine());
             out.flush();
-
-
+            String data = in.readLine();
+            System.out.println(data);
             out.close();
             in.close();
             socket.close();
