@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.SocketChannel;
 
 /**
  * <p/>
@@ -14,32 +15,51 @@ import java.net.Socket;
  * Time: 19:18
  */
 public class SocketServer {
+
     private static final int port = 8080;
 
     public static void main(String[] args) {
+
         ServerSocket serverSocket = null;
+
+        Socket clientSocket = null;
+
+        BufferedReader in = null;
+
+        PrintWriter out = null;
 
 
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("Server is start.............");
-            Socket socket = serverSocket.accept();
-            socket.setKeepAlive(true);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            while (true) {
 
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                System.out.println("receive data:" + line);
-                if ("Bye".equalsIgnoreCase(line)) {
-                    break;
-                }
-                out.println("SUCCESS");
+                clientSocket = serverSocket.accept();
+
+                SocketChannel socketChannel = clientSocket.getChannel();
+
+
+                System.out.println("connect " + clientSocket.getRemoteSocketAddress());
+                //channelInfo(socketChannel);
+
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+                String data = in.readLine();
+
+                System.out.println("receive data :" + data);
+
+                out.close();
+
+                in.close();
+
+                clientSocket.close();
             }
 
-
         } catch (IOException e) {
+
             e.printStackTrace();
         } finally {
             try {
@@ -47,6 +67,28 @@ public class SocketServer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+    }
+
+
+    public static void channelInfo(SocketChannel socketChannel) {
+        try {
+            boolean isBlocking = socketChannel.isBlocking();
+
+            boolean finishConnection = socketChannel.finishConnect();
+
+            boolean isConnection = socketChannel.isConnected();
+
+            boolean isRegistry = socketChannel.isRegistered();
+
+            System.out.println("isBlocking :" + isBlocking);
+            System.out.println("finishConnection :" + finishConnection);
+            System.out.println("isConnection :" + isConnection);
+            System.out.println("isRegistry :" + isRegistry);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
