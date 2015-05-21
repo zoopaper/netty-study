@@ -17,4 +17,10 @@ public class ChannelCloseOutbound extends ChannelHandlerAdapter {
 		ctx.close(promise);
 	}
 
+
+	public static void main(String[] args){
+		String hex =Integer.toHexString(100);
+		System.out.println((String.valueOf(Long.MAX_VALUE).length()));
+	}
+
 }
