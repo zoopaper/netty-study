@@ -9,16 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
-
     private static Logger logger = LoggerFactory.getLogger(HttpInboundHandler.class);
+
     private final String proxyServer;
     private HttpOutboundHandler handler;
-    
+
     public HttpInboundHandler(String proxyServer) {
         this.proxyServer = proxyServer;
         handler = new HttpOutboundHandler(this.proxyServer);
     }
-    
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -34,10 +34,10 @@ public class HttpInboundHandler extends ChannelInboundHandlerAdapter {
 //            if (uri.contains("/test")) {
 //                handlerTest(fullRequest, ctx);
 //            }
-    
+
             handler.handle(fullRequest, ctx);
-    
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ReferenceCountUtil.release(msg);

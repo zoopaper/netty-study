@@ -16,18 +16,15 @@ import org.slf4j.LoggerFactory;
 
 public class HttpInboundServer {
     private static Logger logger = LoggerFactory.getLogger(HttpInboundServer.class);
-
     private int port;
-    
     private String proxyServer;
 
     public HttpInboundServer(int port, String proxyServer) {
-        this.port=port;
+        this.port = port;
         this.proxyServer = proxyServer;
     }
 
     public void run() throws Exception {
-
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(16);
 
