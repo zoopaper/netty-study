@@ -9,7 +9,7 @@ import io.netty.channel.ChannelPromise;
  */
 public class ChannelCloseOutbound extends ChannelHandlerAdapter {
 
-	@Override
+
 	public void close(ChannelHandlerContext ctx, ChannelPromise promise)
 			throws Exception {
 

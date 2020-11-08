@@ -44,7 +44,6 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
 		this.url = url;
 	}
 
-	@Override
 	protected void messageReceived(ChannelHandlerContext ctx, FullHttpRequest request) throws Exception {
 
 		if (!request.getDecoderResult().isSuccess()) {
@@ -106,14 +105,14 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
 		sendFileFuture = ctx.write(new ChunkedFile(randomAccessFile, 0, fileLength, 8192), ctx.newProgressivePromise());
 		sendFileFuture.addListener(new ChannelProgressiveFutureListener() {
 
-			@Override
+
 			public void operationComplete(ChannelProgressiveFuture future) throws Exception {
 
 				System.err.println(future.channel() + " transfer complete");
 
 			}
 
-			@Override
+
 			public void operationProgressed(ChannelProgressiveFuture future, long progress, long total)
 					throws Exception {
 				if (total < 0) {
@@ -131,7 +130,7 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
 
 	}
 
-	@Override
+
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 
 		cause.printStackTrace();
@@ -233,4 +232,8 @@ public class HttpFileServerHandler extends SimpleChannelInboundHandler<FullHttpR
 		response.headers().set(HttpHeaders.Names.CONTENT_TYPE, mimeTypeMap.getContentType(file.getPath()));
 	}
 
+
+	protected void channelRead0(ChannelHandlerContext channelHandlerContext, FullHttpRequest fullHttpRequest) throws Exception {
+
+	}
 }

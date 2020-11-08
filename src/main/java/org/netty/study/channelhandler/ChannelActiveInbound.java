@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
  */
 public class ChannelActiveInbound extends ChannelHandlerAdapter {
 
-	@Override
+
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		
 		System.out.println("TCP Connected!");

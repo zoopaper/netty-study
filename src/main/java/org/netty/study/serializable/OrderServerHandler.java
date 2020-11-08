@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 public class OrderServerHandler extends ChannelHandlerAdapter {
 
 
-	@Override
+
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		OrderRequest request = (OrderRequest) msg;
 
@@ -26,7 +26,7 @@ public class OrderServerHandler extends ChannelHandlerAdapter {
 		resp.setDesc("Receive order success,we are as quickly as possible send...");
 		return resp;
 	}
-	@Override
+
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		cause.printStackTrace();
 		ctx.close();

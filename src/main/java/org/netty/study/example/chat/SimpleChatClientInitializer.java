@@ -15,7 +15,7 @@ import io.netty.handler.codec.string.StringEncoder;
  * Time: 14:35
  */
 public class SimpleChatClientInitializer extends ChannelInitializer<SocketChannel> {
-    @Override
+
     protected void initChannel(SocketChannel ch) throws Exception {
 
         ChannelPipeline channelPipeline = ch.pipeline();

@@ -25,7 +25,7 @@ public class FileServer {
 			boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100);
 			boot.childHandler(new ChannelInitializer<SocketChannel>() {
 
-				@Override
+
 				protected void initChannel(SocketChannel ch) throws Exception {
 					ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
 					ch.pipeline().addLast(new LineBasedFrameDecoder(1024));

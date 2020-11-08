@@ -99,10 +99,14 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
 		}
 	}
 
-	@Override
+
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		cause.printStackTrace();
 		ctx.close();
 	}
 
+
+	protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
+
+	}
 }

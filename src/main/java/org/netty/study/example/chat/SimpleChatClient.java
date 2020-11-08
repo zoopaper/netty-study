@@ -21,7 +21,7 @@ public class SimpleChatClient {
 
         for (int i = 0; i < 10000; i++) {
             new Thread(new Runnable() {
-                @Override
+
                 public void run() {
                     try {
                         new SimpleChatClient("localhost", 8080).run();

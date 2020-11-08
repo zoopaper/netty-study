@@ -26,7 +26,7 @@ public class EchoServer {
 			boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
 					.option(ChannelOption.SO_BACKLOG, 100).childHandler(new ChannelInitializer<SocketChannel>() {
 
-						@Override
+
 						protected void initChannel(SocketChannel ch) throws Exception {
 							ch.pipeline().addLast(new FixedLengthFrameDecoder(7));
 							ch.pipeline().addLast(new StringDecoder());

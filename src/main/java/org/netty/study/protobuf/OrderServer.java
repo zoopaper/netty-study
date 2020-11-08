@@ -32,7 +32,7 @@ public class OrderServer {
 			boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 100);
 			boot.handler(new LoggingHandler(LogLevel.INFO)).childHandler(new ChannelInitializer<SocketChannel>() {
 
-				@Override
+
 				protected void initChannel(SocketChannel ch) throws Exception {
 					ch.pipeline().addLast(new StringEncoder(CharsetUtil.UTF_8));
 					ch.pipeline().addLast(new ProtobufVarint32FrameDecoder());

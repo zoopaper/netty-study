@@ -25,7 +25,7 @@ public class HttpFileServer {
 			boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 
-						@Override
+
 						protected void initChannel(SocketChannel ch) throws Exception {
 							ch.pipeline().addLast("http-decoder", new HttpRequestDecoder());
 							ch.pipeline().addLast("http-aggregator", new HttpObjectAggregator(65536));

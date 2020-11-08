@@ -64,7 +64,7 @@ public class ChatClient {
             this.reader = reader;
         }
 
-        @Override
+
         public void run() {
             while (true) {
 

@@ -24,7 +24,7 @@ public class LengthFramer implements Framer {
         this.dis = new DataInputStream(is);
     }
 
-    @Override
+
     public void frameMsg(byte[] message, OutputStream out) throws IOException {
 
         if (message.length > MAX_MESSAGE_LENGTH) {
@@ -33,7 +33,7 @@ public class LengthFramer implements Framer {
 
     }
 
-    @Override
+
     public byte[] nextMsg() throws IOException {
         return new byte[0];
     }

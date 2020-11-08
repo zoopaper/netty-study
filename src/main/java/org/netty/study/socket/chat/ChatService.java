@@ -54,7 +54,7 @@ public class ChatService {
             this.bufferedReader = bufferedReader;
         }
 
-        @Override
+
         public void run() {
             try {
                 while ((message = bufferedReader.readLine()) != null) {

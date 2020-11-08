@@ -8,7 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 public class EchoClientHandler extends ChannelHandlerAdapter {
 
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		super.channelRead(ctx, msg);
+//		super.channelRead(ctx, msg);
 	}
 
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {

@@ -22,7 +22,7 @@ public class OrderClient {
 			boot.group(group).channel(NioSocketChannel.class).option(ChannelOption.TCP_NODELAY, true)
 					.handler(new ChannelInitializer<SocketChannel>() {
 
-						@Override
+
 						protected void initChannel(SocketChannel ch) throws Exception {
 
 							ch.pipeline().addLast(

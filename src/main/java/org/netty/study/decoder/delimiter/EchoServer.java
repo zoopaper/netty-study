@@ -30,7 +30,7 @@ public class EchoServer {
 					.option(ChannelOption.SO_BACKLOG, 100).handler(new LoggingHandler(LogLevel.INFO))
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 
-						@Override
+
 						protected void initChannel(SocketChannel ch) throws Exception {
 
 							ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
